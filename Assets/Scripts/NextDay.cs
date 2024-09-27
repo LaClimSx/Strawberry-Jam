@@ -5,9 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class NextDay : MonoBehaviour
 {
-    public void finish()
+    // Reference to the DayManager
+    private DayManager dayManager;
+
+    private void Start()
     {
+        // Find the DayManager in the scene (assuming it's attached to a GameObject in the scene)
+        dayManager = FindObjectOfType<DayManager>();
+
+        if (dayManager == null)
+        {
+            Debug.LogError("DayManager not found in the scene.");
+        }
+    }
+
+    public void Finish()
+    {
+        if (dayManager != null)
+        {
+            // Call the TransitionToNextState method from DayManager
+            dayManager.TransitionToNextState();
+        }
+
+        // Load the Main scene after transitioning to the next state
         SceneManager.LoadScene("Main");
-        // to do
     }
 }
