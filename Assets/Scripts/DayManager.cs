@@ -10,6 +10,17 @@ public class DayManager : MonoBehaviour
     // Dictionary to hold the state transition maps for each day
     private Dictionary<int, Dictionary<int, int>> dayTransitionMap = new Dictionary<int, Dictionary<int, int>>();
 
+    private Dictionary<int, string> dialogues = new Dictionary<int, string>
+        {
+            { 1, "Hello" },  // State 1 -> State 2
+            { 2, "World" }   // State 2 -> State 3
+        };
+    private Dictionary<int, string> debriefs = new Dictionary<int, string>
+        {
+            { 1, "Hello" },  // State 1 -> State 2
+            { 2, "World" }   // State 2 -> State 3
+        };
+
     private void Start()
     {
         // Example of initializing state transitions for Day 1
@@ -67,5 +78,18 @@ public class DayManager : MonoBehaviour
                 Debug.LogWarning("No transition found for current state: " + currentState + " on Day " + currentChoice);
             }
         }
+    }
+
+    public string getDialog(int button)
+    {
+        int show = 10*GetCurrentState() + button;
+        return dialogues[show];
+    }
+
+
+    public string getDebrief(int button)
+    {
+        int show = 10 * GetCurrentState() + currentDayState.choice;
+        return dialogues[show];
     }
 }
