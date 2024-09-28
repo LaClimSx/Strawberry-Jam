@@ -5,6 +5,7 @@ using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
 public class Stamps : Draggable
@@ -12,11 +13,20 @@ public class Stamps : Draggable
     [Range(1,50)]
     [SerializeField] private int speed;
     [SerializeField] private float DELTA = 0.2f;
-    
-    public void OnEndDrag(PointerEventData eventData)
+    private bool move = true;
+    private Vector3 position;
+
+    [SerializeField] public Sprite newSprite; // Sprite to change to on drop
+    public Image stampImage; 
+
+    public override void OnEndDrag(PointerEventData eventData)
     {
-        base.OnEndDrag(eventData);
-        
+        isDragged = false;
+        if (stampImage != null && position.x > 200 && position.x < 900 && position.y < 1200 && position.y > 100)
+        {
+            stampImage.sprite = newSprite; // Change the sprite to the new one
+            move = false;
+        }
     }
 
     private void MoveTowards(Vector2 destination)
@@ -27,10 +37,11 @@ public class Stamps : Draggable
 
     private void Update()
     {
-        if (!isDragged)
+        if (!isDragged && move)
         {
-            if (Vector2.Distance(defaultPosition,rectTransform.anchoredPosition) > DELTA)
+            if (Vector2.Distance(defaultPosition, rectTransform.anchoredPosition) > DELTA)
                 MoveTowards(defaultPosition);
         }
+        position= transform.position;
     }
 }

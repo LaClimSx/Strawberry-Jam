@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public abstract class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private Canvas canvas;
 
@@ -42,10 +42,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     /*
      * Fire on release
      */
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        isDragged = false;
-    }
+    public abstract void OnEndDrag(PointerEventData eventData);
 
     /*
      * Fire while dragging
