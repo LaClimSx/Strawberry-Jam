@@ -1,19 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 
 public class DayManager : MonoBehaviour
 {
     public DayState currentDayState;
+    
+    public GameObject pagePrefab;
+    public GameObject messagePrefab;
+    
+    public GameObject pagesHolder;
+    public GameObject messageHolder;
+
+    public GameObject button1;
+    public Button button2;
+    public Button button3;
+
+    public bool mainIsLoading;
 
     // Dictionary to hold the state transition maps for each day
     private Dictionary<int, Dictionary<int, int>> dayTransitionMap = new Dictionary<int, Dictionary<int, int>>();
 
     private Dictionary<int, string[]> dialogues = new Dictionary<int, string[]>
         {
-            { 1, new [] {"Hello" } },  // State 1 -> State 2
-            { 2, new [] {"World" } }   // State 2 -> State 3
+            { 1, new [] {"Hello","World" } },  // State 1 -> State 2
+            { 2, new [] {"Hello","World" } }   // State 2 -> State 3
         };
     private Dictionary<int, string> debriefs = new Dictionary<int, string>
         {
@@ -29,6 +44,8 @@ public class DayManager : MonoBehaviour
 
     private void Start()
     {
+        
+        
         var state1Transitions = new Dictionary<int, int>
         {
             { 0, 2 },  // State 1 -> State 2
@@ -75,6 +92,8 @@ public class DayManager : MonoBehaviour
         return currentDayState.state;
     }
 
+    
+
     // Method to set the current state
     public void SetCurrentState(int newState)
     {
@@ -102,6 +121,33 @@ public class DayManager : MonoBehaviour
             {
                 Debug.LogWarning("No transition found for current state: " + currentState + " on Day " + currentChoice);
             }
+        }
+        
+        // Load the Main scene after transitioning to the next state
+        SceneManager.LoadScene("Main");
+
+        mainIsLoading = true;
+
+
+    }
+
+
+    private void Update()
+    {
+        if (mainIsLoading && SceneManager.GetActiveScene().isLoaded)
+        {
+            pagesHolder = GameObject.FindWithTag("PageHolder");
+            messageHolder = GameObject.FindWithTag("MessageHolder");
+
+            mainIsLoading = false;
+        }
+    }
+
+    public void onButtonClick(int button)
+    {
+        foreach (string s in getDialog(button))
+        {
+            
         }
     }
 
