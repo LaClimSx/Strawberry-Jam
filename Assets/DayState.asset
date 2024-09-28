@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93075d9a638bf04cba46b70a3e259d3, type: 3}
   m_Name: DayState
   m_EditorClassIdentifier: 
-  state: 1
+  state: 4
   choice: 1
