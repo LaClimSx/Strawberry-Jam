@@ -10,15 +10,21 @@ public class DayManager : MonoBehaviour
     // Dictionary to hold the state transition maps for each day
     private Dictionary<int, Dictionary<int, int>> dayTransitionMap = new Dictionary<int, Dictionary<int, int>>();
 
-    private Dictionary<int, string> dialogues = new Dictionary<int, string>
+    private Dictionary<int, string[]> dialogues = new Dictionary<int, string[]>
         {
-            { 1, "Hello" },  // State 1 -> State 2
-            { 2, "World" }   // State 2 -> State 3
+            { 1, new [] {"Hello" } },  // State 1 -> State 2
+            { 2, new [] {"World" } }   // State 2 -> State 3
         };
     private Dictionary<int, string> debriefs = new Dictionary<int, string>
         {
             { 1, "Hello" },  // State 1 -> State 2
             { 2, "World" }   // State 2 -> State 3
+        };
+
+    private Dictionary<int, string[]> folders = new Dictionary<int, string[]>
+        {
+            { 1, new [] {"Hello"} },  // State 1 -> State 2
+            { 2, new [] {"World"} }   // State 2 -> State 3
         };
 
     private void Start()
@@ -80,7 +86,7 @@ public class DayManager : MonoBehaviour
         }
     }
 
-    public string getDialog(int button)
+    public string[] getDialog(int button)
     {
         int show = 10*GetCurrentState() + button;
         return dialogues[show];
@@ -90,6 +96,17 @@ public class DayManager : MonoBehaviour
     public string getDebrief()
     {
         int show = 10 * GetCurrentState() + currentDayState.choice;
-        return dialogues[show];
+        return debriefs[show];
+    }
+
+    public string[] getFolder()
+    {
+        int show = GetCurrentState();
+        return folders[show];
+    }
+
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 }
