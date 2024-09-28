@@ -246,6 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd3dbcf79843a947a18023ec721b4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonText: {fileID: 276188836}
 --- !u!114 &208346704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,8 +637,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1972373057}
-  - {fileID: 1083808931}
   - {fileID: 102559230}
+  - {fileID: 1083808931}
   - {fileID: 208346702}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

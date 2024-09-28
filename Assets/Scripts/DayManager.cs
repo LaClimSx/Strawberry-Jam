@@ -81,7 +81,7 @@ public class DayManager : MonoBehaviour
         dayTransitionMap.Add(2, state2Transitions);
         dayTransitionMap.Add(3, state3Transitions);
         dayTransitionMap.Add(4, state4Transitions);
-        dayTransitionMap.Add(5, state5Transitions);
+        dayTransitionMap.Add(5, state5Transitions);     
 
         // You can add more day-specific transition maps as needed...
     }
@@ -107,13 +107,13 @@ public class DayManager : MonoBehaviour
         int currentState = GetCurrentState();
         int currentChoice = currentDayState.choice;
 
-        if (dayTransitionMap.ContainsKey(currentChoice))
+        if (dayTransitionMap.ContainsKey(currentState))
         {
-            Dictionary<int, int> stateTransitionMap = dayTransitionMap[currentChoice];
+            Dictionary<int, int> stateTransitionMap = dayTransitionMap[currentState];
 
-            if (stateTransitionMap.ContainsKey(currentState))
+            if (stateTransitionMap.ContainsKey(currentChoice))
             {
-                int nextState = stateTransitionMap[currentState];
+                int nextState = stateTransitionMap[currentChoice];
                 SetCurrentState(nextState);
                 Debug.Log("Transitioned to next state: " + nextState);
             }
