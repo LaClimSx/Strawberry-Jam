@@ -87,7 +87,7 @@ public class DayManager : MonoBehaviour
     }
 
 
-    public string getDebrief(int button)
+    public string getDebrief()
     {
         int show = 10 * GetCurrentState() + currentDayState.choice;
         return dialogues[show];
