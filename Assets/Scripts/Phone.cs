@@ -13,6 +13,10 @@ public class Phone : MonoBehaviour
     private GameObject btn1Object;
     private GameObject btn2Object;
     private GameObject btn3Object;
+    public Image image;
+    public Sprite two;
+    public Sprite one;
+    public Sprite zero;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +29,12 @@ public class Phone : MonoBehaviour
         if (state == 1 || state == 2 || state == 3)
         {
             this.gameObject.SetActive(false);
+        } else
+        {
+            image.sprite = two;
         }
 
-        counter = 0;
+        counter = 2;
 
         // Find buttons by their tags and assign their Button components
         btn1Object = GameObject.FindWithTag("button1");
@@ -51,10 +58,12 @@ public class Phone : MonoBehaviour
 
     public void counterPlus(Button me)
     {
-        counter++;
+        counter--;
         me.interactable = false;
-        if(counter >= 2)
+        if(counter == 1) image.sprite = one;
+        if(counter == 0)
         {
+            image.sprite = zero;
             button1.interactable = false;
             button2.interactable = false;
             button3.interactable = false;
