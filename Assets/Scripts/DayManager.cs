@@ -37,8 +37,8 @@ public class DayManager : MonoBehaviour
 
     private Dictionary<int, string[]> dialogues = new Dictionary<int, string[]>
         {
-            { 11, new [] {"Hello","World" } },  // State 1 -> State 2
-            { 12, new [] {"Hello","World" } }   // State 2 -> State 3
+            { 41, new [] {"-Bonjour Docteur, que pouvez-vous nous dire de l'état des hôpitaux actuellement ?","-Bonjour Sam, la situation est très tendue de notre côté. Nous sommes en sous-effectif et en souffrons grandement.", "-Qu'en est-il du moral des troupes ? ", "-Le personnel médical est épuisé mais nous faisons de notre mieux.","-Comment expliquer une telle situation ?","-Les urgences sont saturées dernièrement... *BRUIT DE FOND* excusez-moi il y a une urgence je dois vous laisser.","-Au revoir et bonne chance.", "-Merci. *BIP*" } },  // State 1 -> State 2
+            { 42, new [] {"Hello","World" } }   // State 2 -> State 3
         };
     private Dictionary<int, string> debriefs = new Dictionary<int, string>
         {
@@ -48,9 +48,11 @@ public class DayManager : MonoBehaviour
 
     private Dictionary<int, string[]> folders = new Dictionary<int, string[]>
         {
-            { 1, new [] {"Hello"} },  // State 1 -> State 2
-            { 2, new [] {"World"} },   // State 2 -> State 3
-            { 3, new [] {"World2"} }   // State 2 -> State 3
+            { 1, new [] {"\"Des sous-marins ##### nord ricoréens ont été aperçus dans l'Océan #####.\", Rapport des services de renseignement de la Cafédération\n\"J'ai intercepté des messages de bateaux nord ricoréens au large Los Anguille, sur la côte Pacifish.\", un contact au port de Los Anguille.\n\"Une cargaison de missiles a quitté le pays récemment.\", Ingénieur militaire nord ricoréen."} },
+            { 2, new [] {"\"Les usines tournent à plein régime, les machineries risquent de ne pas tenir.\", Syndicat des travailleurs\n\"Les ouvriers posent un préavis de grève, ils exigent une action du gouvernement.\", Syndicat des travailleurs\n\"Nos magasins sont en rupture de stock, les arrivages ne suffisent plus.\", Employé du supermarché Migral\n\"Des supérettes ont été vandalisées la nuit dernière. Les dégâts s'élèvent à des milliers de CHF.\", Commandant de police\n\"La frontière avec la Fromance est engorgée, je n'ai jamais vu de tels embouteillages.\", Officier fédéral de douane.\n\"On manque de béton pour satisfaire les commandes des constructeurs de bunkers.\", Bétoprise (Entreprise de béton)"} },   // State 2 -> State 3
+            { 3, new [] {"\"Nos bunkers respectent les normes environnementales.\", Entreprise de construction de bunkers\n\"Nos permis de construire nous ont été délivrés par la Cafédération.\", Entreprise de construction de bunkers\n\"La forêt de Broccoliande est dévastée. Ils abattent les arbres par centaines.\", Garde forestier\n\"Le prix du bois est en chute libre, c'est le moment d'acheter pour préparer cet hiver.\", Employé d'un magasin de bricolage\n\"Notre terre est en danger, on lance une pétition pour la protéger.\", organisation écologique Beanpeace\n\"Nous donnerons bientôt une conférence de presse concernant notre projet en forêt.\", annonce de la Cafédération"} },   // State 2 -> State 3
+            { 4, new [] {"\"Les services d'urgence des hopitaux sont encombrés.\", Extrait d'un communiqué du minsitère de la Santé.\n\"Le temps d'attente pour les appels d'urgence est supérieur à 2h.\", standardiste dans un CHU.\n\"Nous avons développé de nouveaux gants chirurgicaux sans latex.\", Entreprise de dispositifs médicaux\n\"Mon équipe et moi-même avons découvert un nouveau virus.\", Professeur Tournedos, virologue\n\"Nous rédigeons de nouvelles directives sur la prévention des maladies pour préparer l'hiver à venir.\", Agent de l'OMS\n\"De nouvelles règles concernant la douane entreront en vigueur dès le mois prochain.\", Ministère de l'Intérieur"}},
+            {5, new []{""}}
         };
 
     private void Start()
@@ -244,7 +246,7 @@ public class DayManager : MonoBehaviour
 
     public string[] getDialog(int button)
     {
-        int show = 10* (GetCurrentState()-1) + button;
+        int show = 10* GetCurrentState() + button;
         return dialogues[show];
     }
 
