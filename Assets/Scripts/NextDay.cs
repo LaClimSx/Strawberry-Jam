@@ -9,6 +9,7 @@ public class NextDay : MonoBehaviour
     // Reference to the DayManager
     private DayManager dayManager;
     public Text buttonText;
+    public Text mainText;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class NextDay : MonoBehaviour
         {
             Debug.LogError("DayManager not found in the scene.");
         }
+        mainText.text = dayManager.getDebrief();
         var state = dayManager.GetCurrentState();
         Debug.Log(state);
         if (state != 4 && state != 5) buttonText.text = "Continue";
