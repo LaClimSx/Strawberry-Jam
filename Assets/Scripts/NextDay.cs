@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NextDay : MonoBehaviour
 {
     // Reference to the DayManager
     private DayManager dayManager;
+    public Text buttonText;
 
     private void Start()
     {
@@ -17,7 +19,12 @@ public class NextDay : MonoBehaviour
         {
             Debug.LogError("DayManager not found in the scene.");
         }
+        var state = dayManager.GetCurrentState();
+        Debug.Log(state);
+        if (state != 4 && state != 5) buttonText.text = "Continue";
+        else buttonText.text = "The End!";
     }
+
 
     public void Finish()
     {
@@ -26,8 +33,8 @@ public class NextDay : MonoBehaviour
             // Call the TransitionToNextState method from DayManager
             dayManager.TransitionToNextState();
         }
-
-        // Load the Main scene after transitioning to the next state
-        SceneManager.LoadScene("Main");
+        Debug.Log(dayManager.GetCurrentState());
+        if(dayManager.GetCurrentState() != 6) SceneManager.LoadScene("Main");
+        else SceneManager.LoadScene("Credits");
     }
 }
