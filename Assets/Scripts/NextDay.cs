@@ -27,7 +27,5 @@ public class NextDay : MonoBehaviour
             dayManager.TransitionToNextState();
         }
 
-        // Load the Main scene after transitioning to the next state
-        SceneManager.LoadScene("Main");
     }
 }
