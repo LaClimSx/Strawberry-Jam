@@ -21,6 +21,7 @@ public class Stamps : Draggable
     [SerializeField] public Sprite newSprite; // Sprite to change to on drop
     public Image stampImage;
     public int choice;
+    public AudioSource sound;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class Stamps : Draggable
         {
             stampImage.sprite = newSprite; // Change the sprite to the new one
             move = false;
+            sound.Play();
 
             StartCoroutine(WaitAndProceed());
         }
