@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class DayManager : MonoBehaviour
 {
+    public static DayManager instance;
     public DayState currentDayState;
     
     public GameObject pagePrefab;
@@ -172,7 +173,6 @@ public class DayManager : MonoBehaviour
                     }
                 });
                 
-                button3.GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(3);});
                 foreach (var o in GameObject.FindGameObjectsWithTag("UI"))
                 {
                     o.SetActive(false);
@@ -207,6 +207,7 @@ public class DayManager : MonoBehaviour
 
     public static void initGame()
     {
+        instance.SetCurrentState(1);
         SceneManager.LoadScene("Main");
         mainIsLoading = true;
         isButtonReady = false;
@@ -245,6 +246,7 @@ public class DayManager : MonoBehaviour
 
     public void Awake()
     {
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
 }

@@ -292,6 +292,9 @@ MonoBehaviour:
   button1: {fileID: 0}
   button2: {fileID: 0}
   button3: {fileID: 0}
+  cancelMessage: {fileID: 0}
+  cancelFolder: {fileID: 0}
+  desk: {fileID: 0}
 --- !u!4 &540062264
 Transform:
   m_ObjectHideFlags: 0
