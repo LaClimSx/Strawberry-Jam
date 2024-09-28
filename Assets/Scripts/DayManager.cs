@@ -23,13 +23,14 @@ public class DayManager : MonoBehaviour
     public GameObject button3;
     public GameObject cancelMessage;
     public GameObject cancelFolder;
+    public GameObject folderButton;
 
     public GameObject desk;
 
     
 
     public static bool mainIsLoading;
-    public static bool isButtonReady = false;
+    public static bool isButtonReady;
 
     // Dictionary to hold the state transition maps for each day
     private Dictionary<int, Dictionary<int, int>> dayTransitionMap = new Dictionary<int, Dictionary<int, int>>();
@@ -41,14 +42,15 @@ public class DayManager : MonoBehaviour
         };
     private Dictionary<int, string> debriefs = new Dictionary<int, string>
         {
-            { 11, "Hello" },  // State 1 -> State 2
-            { 12, "World" }   // State 2 -> State 3
+            { 1, "Hello" },  // State 1 -> State 2
+            { 11, "World" }   // State 2 -> State 3
         };
 
     private Dictionary<int, string[]> folders = new Dictionary<int, string[]>
         {
-            { 11, new [] {"Hello"} },  // State 1 -> State 2
-            { 12, new [] {"World"} }   // State 2 -> State 3
+            { 1, new [] {"Hello"} },  // State 1 -> State 2
+            { 2, new [] {"World"} },   // State 2 -> State 3
+            { 3, new [] {"World2"} }   // State 2 -> State 3
         };
 
     private void Start()
@@ -149,15 +151,16 @@ public class DayManager : MonoBehaviour
 
     private void Update()
     {
-        if (button1 == null || button2 == null || button3 == null || cancelFolder == null || cancelFolder == null)
+        if (button1 == null || button2 == null || button3 == null || cancelFolder == null || cancelFolder == null || folderButton == null)
         {
             button1 = GameObject.FindWithTag("button1");
             button2 = GameObject.FindWithTag("button2");
             button3 = GameObject.FindWithTag("button3");
             cancelMessage = GameObject.FindWithTag("closeMessage");
             cancelFolder = GameObject.FindWithTag("closeFolder");
+            folderButton = GameObject.FindWithTag("Folder");
 
-            if (cancelMessage != null && cancelFolder != null)
+            if (cancelMessage != null && cancelFolder != null && folderButton != null)
             {
                 cancelMessage.GetComponent<Button>().onClick.AddListener(delegate {
                     for (int i = 0; i < messageHolder.transform.childCount; i++)
@@ -180,6 +183,8 @@ public class DayManager : MonoBehaviour
                 }
                 cancelFolder.GetComponent<Button>().onClick.AddListener(delegate {desk.transform.SetAsLastSibling();});
                 cancelMessage.GetComponent<Button>().onClick.AddListener(delegate {desk.transform.SetAsLastSibling();});
+                folderButton.GetComponent<Button>().onClick.AddListener(delegate {desk.transform.SetSiblingIndex(1);});
+                folderButton.GetComponent<Button>().onClick.AddListener(delegate { onFolderClick();});
             }
         }
 
@@ -221,8 +226,20 @@ public class DayManager : MonoBehaviour
             GameObject gameObject = Instantiate(messagePrefab, messageHolder.transform);
             var textmesh = gameObject.GetComponentInChildren<Text>();
             textmesh.text = s;
-            desk.transform.SetAsFirstSibling();
+            desk.transform.SetSiblingIndex(1);
         }
+    }
+
+    public void onFolderClick()
+    {
+        foreach (string s in getFolder())
+        {
+            GameObject gameObject = Instantiate(pagePrefab, pagesHolder.transform);
+            var textmesh = gameObject.GetComponentInChildren<Text>();
+            textmesh.text = s;
+            desk.transform.SetSiblingIndex(1);
+        }
+        
     }
 
     public string[] getDialog(int button)

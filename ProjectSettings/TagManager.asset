@@ -13,6 +13,7 @@ TagManager:
   - closeFolder
   - UI
   - Desk
+  - Folder
   layers:
   - Default
   - TransparentFX
