@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +29,14 @@ public class DayManager : MonoBehaviour
 
     public GameObject desk;
 
+    public Sprite sam;
+    public Sprite politi;
+    public Sprite col;
+    public Sprite agent;
+    public Sprite doc;
+    public Sprite crack;
+    public Sprite comp;
+
     
 
     public static bool mainIsLoading;
@@ -36,7 +45,9 @@ public class DayManager : MonoBehaviour
     // Dictionary to hold the state transition maps for each day
     private Dictionary<int, Dictionary<int, int>> dayTransitionMap = new Dictionary<int, Dictionary<int, int>>();
 
-    private Dictionary<int, string[]> dialogues = new Dictionary<int, string[]>
+    private Dictionary<int, List<(Sprite, string)>> dialogues = new Dictionary<int, List<(Sprite, string)>>();
+
+    private Dictionary<int, string[]> dialogues1 = new Dictionary<int, string[]>
         {
             { 41, new [] {"-Bonjour Docteur, que pouvez-vous nous dire de l'état des hôpitaux actuellement ?","-Bonjour Sam, la situation est très tendue de notre côté. Nous sommes en sous-effectif et en souffrons grandement.", "-Qu'en est-il du moral des troupes ? ", "-Le personnel médical est épuisé mais nous faisons de notre mieux.","-Comment expliquer une telle situation ?","-Les urgences sont saturées dernièrement... *BRUIT DE FOND* excusez-moi il y a une urgence je dois vous laisser.","-Au revoir et bonne chance.", "-Merci. *BIP*" } },  // State 1 -> State 2
             { 42, new [] {"Hello","World" } }   // State 2 -> State 3
@@ -58,6 +69,8 @@ public class DayManager : MonoBehaviour
 
     private void Start()
     {
+        dialogues.Add(41, new List<(Sprite, string)>{(sam,"-Bonjour Docteur, que pouvez-vous nous dire de l'état des hôpitaux actuellement ?"),(doc,"-Bonjour Sam, la situation est très tendue de notre côté. Nous sommes en sous-effectif et en souffrons grandement."),(sam,"-Qu'en est-il du moral des troupes ? "),(doc,"-Le personnel médical est épuisé mais nous faisons de notre mieux."), (sam,"-Comment expliquer une telle situation ?"),(doc,"-Les urgences sont saturées dernièrement... *BRUIT DE FOND* excusez-moi il y a une urgence je dois vous laisser."),(sam,"-Au revoir et bonne chance."),(doc,"-Merci. *BIP*")});
+        
         
         
         var state1Transitions = new Dictionary<int, int>
@@ -225,11 +238,13 @@ public class DayManager : MonoBehaviour
     public void onButtonClick(int button)
     {
         desk.transform.SetSiblingIndex(1);
-        foreach (string s in getDialog(button))
+        foreach ((Sprite spr, string str) in getDialog(button))
         {
             GameObject gameObject = Instantiate(messagePrefab, messageHolder.transform);
             var textmesh = gameObject.GetComponentInChildren<Text>();
-            textmesh.text = s;
+            var image = gameObject.transform.GetChild(1).GetComponent<Image>();
+            textmesh.text = str;
+            image.sprite = spr;
         }
     }
 
@@ -244,7 +259,7 @@ public class DayManager : MonoBehaviour
             }  
     }
 
-    public string[] getDialog(int button)
+    public List<(Sprite,String)> getDialog(int button)
     {
         int show = 10* GetCurrentState() + button;
         return dialogues[show];

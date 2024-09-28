@@ -169,10 +169,17 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 85
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: salut
+  m_Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
+    imperdiet mollis. Suspendisse aliquam diam neque, vitae feugiat nisl lobortis
+    consequat. Aenean consequat nisl commodo, suscipit diam in, venenatis velit.
+    Vestibulum suscipit in lectus a semper. In aliquet ultrices nisi, quis fermentum
+    erat auctor eget. Nulla euismod, dolor at dapibus scelerisque, magna metus laoreet
+    nisi, eget aliquet urna nibh eu quam. Duis lectus felis, sodales congue interdum
+    id, auctor a dolor. Vivamus risus sem, posuere ac diam eu, rutrum egestas nisl.
+    Duis risus mauris, feugiat eget odio sagittis, hendrerit aliquet tellus.
