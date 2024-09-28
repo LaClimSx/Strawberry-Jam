@@ -29,23 +29,42 @@ public class DayManager : MonoBehaviour
 
     private void Start()
     {
-        // Example of initializing state transitions for Day 1
         var state1Transitions = new Dictionary<int, int>
         {
-            { 1, 2 },  // State 1 -> State 2
-            { 2, 3 }   // State 2 -> State 3
+            { 0, 2 },  // State 1 -> State 2
+            { 1, 3 }   // State 1 -> State 3
         };
 
-        // Example of initializing state transitions for Day 2
         var state2Transitions = new Dictionary<int, int>
         {
-            { 1, 2 },  // State 1 -> State 2
-            { 2, 4 }   // State 2 -> State 4
+            { 0, 4 },  // State 2 -> State 4
+            { 1, 5 }   // State 2 -> State 5
+        };
+
+        var state3Transitions = new Dictionary<int, int>
+        {
+            { 0, 4 },  // State 3 -> State 4
+            { 1, 5 }   // State 3 -> State 5
+        };
+
+        var state4Transitions = new Dictionary<int, int>
+        {
+            { 0, 6 },  // State 2 -> End
+            { 1, 6 }   // State 2 -> End
+        };
+
+        var state5Transitions = new Dictionary<int, int>
+        {
+            { 0, 6 },  // State 2 -> End
+            { 1, 6 }   // State 2 -> End
         };
 
         // Add these dictionaries to the main dayTransitionMap
-        dayTransitionMap.Add(1, state1Transitions); // Day 1 map
-        dayTransitionMap.Add(2, state2Transitions); // Day 2 map
+        dayTransitionMap.Add(1, state1Transitions);
+        dayTransitionMap.Add(2, state2Transitions);
+        dayTransitionMap.Add(3, state3Transitions);
+        dayTransitionMap.Add(4, state4Transitions);
+        dayTransitionMap.Add(5, state5Transitions);
 
         // You can add more day-specific transition maps as needed...
     }
