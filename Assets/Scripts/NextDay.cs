@@ -33,7 +33,6 @@ public class NextDay : MonoBehaviour
             // Call the TransitionToNextState method from DayManager
             dayManager.TransitionToNextState();
         }
-        Debug.Log(dayManager.GetCurrentState());
         if(dayManager.GetCurrentState() != 6) SceneManager.LoadScene("Main");
         else SceneManager.LoadScene("Credits");
     }

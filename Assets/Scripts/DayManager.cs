@@ -109,6 +109,11 @@ public class DayManager : MonoBehaviour
         Debug.Log("State updated to: " + newState);
     }
 
+    public void SetChoice(int choice)
+    {
+        currentDayState.choice = choice;
+    }
+
     // Method to transition to the next state based on the current day and state
     public void TransitionToNextState()
     {
