@@ -1276,6 +1276,7 @@ MonoBehaviour:
   DELTA: 1.5
   newSprite: {fileID: 21300000, guid: c18ee48343edff44cbe31036a4cef03a, type: 3}
   stampImage: {fileID: 949651380}
+  choice: 0
 --- !u!1 &970201252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,6 +1558,7 @@ MonoBehaviour:
   DELTA: 1.5
   newSprite: {fileID: 21300000, guid: dd40550ac8ed25b429b3c74ce1f6400d, type: 3}
   stampImage: {fileID: 1198454089}
+  choice: 1
 --- !u!1 &1202389351
 GameObject:
   m_ObjectHideFlags: 0
