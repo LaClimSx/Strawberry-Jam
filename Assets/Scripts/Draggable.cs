@@ -8,10 +8,12 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
 {
     [SerializeField] private Canvas canvas;
 
-    private RectTransform rectTransform;
+    [HideInInspector] public RectTransform rectTransform;
+    
     private CanvasGroup canvasGroup;
 
-    private Vector2 defaultPosition;
+    [HideInInspector] public Vector2 defaultPosition;
+    [HideInInspector] public bool isDragged;
 
     /*
      * Setup rectTransform, canvasGroup and initial position
@@ -27,16 +29,14 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
      * Fire on click 
      */
     public void OnPointerDown(PointerEventData eventData)
-    {
-        //Debug.Log("PointerDown");
-    }
+    { }
 
     /*
      *  Fire on start dragging
      */
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("BeginDrag");
+        isDragged = true;
     }
 
     /*
@@ -44,7 +44,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
      */
     public void OnEndDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition = defaultPosition;
+        isDragged = false;
     }
 
     /*
@@ -53,6 +53,5 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-        Debug.Log("Drag");
     }
 }
