@@ -646,7 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4cc388b71e1644892d95b977b220f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 150
   creditsTransform: {fileID: 1644718222}
 --- !u!4 &1776788936
 Transform:
