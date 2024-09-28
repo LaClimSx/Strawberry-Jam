@@ -122,60 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &933062
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 933063}
-  - component: {fileID: 933064}
-  m_Layer: 0
-  m_Name: Phone
-  m_TagString: Desk
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &933063
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933062}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 392026971}
-  m_Father: {fileID: 718693139}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -350.0001, y: 661.11115}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0, y: 1}
---- !u!114 &933064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd73bcd3caf4fb24283ae5dd94595867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counter: 0
-  image: {fileID: 392026972}
-  two: {fileID: 21300000, guid: d6b292f92206a8343bc0ec3aba9600f2, type: 3}
-  one: {fileID: 21300000, guid: 17e5f2bc0d02e334fad20d39196ba121, type: 3}
-  zero: {fileID: 21300000, guid: 9ec74046d807ba1499d0ed5bb3aa7301, type: 3}
 --- !u!1 &29849046
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,8 +618,9 @@ GameObject:
   - component: {fileID: 392026971}
   - component: {fileID: 392026973}
   - component: {fileID: 392026972}
+  - component: {fileID: 392026974}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Phone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -686,17 +633,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392026970}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10.500001}
   m_LocalScale: {x: 5, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1017691234}
-  m_Father: {fileID: 933063}
+  m_Father: {fileID: 718693139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -30}
+  m_AnchoredPosition: {x: -320.00012, y: 631.11115}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &392026972
@@ -737,6 +684,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392026970}
   m_CullTransparentMesh: 1
+--- !u!114 &392026974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392026970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd73bcd3caf4fb24283ae5dd94595867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  counter: 2
+  image: {fileID: 392026972}
+  two: {fileID: 21300000, guid: d6b292f92206a8343bc0ec3aba9600f2, type: 3}
+  one: {fileID: 21300000, guid: 17e5f2bc0d02e334fad20d39196ba121, type: 3}
+  zero: {fileID: 21300000, guid: 9ec74046d807ba1499d0ed5bb3aa7301, type: 3}
 --- !u!1 &423512447
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +952,7 @@ RectTransform:
   m_Children:
   - {fileID: 1202389352}
   - {fileID: 758795319}
-  - {fileID: 933063}
+  - {fileID: 392026971}
   m_Father: {fileID: 970201256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2138,7 +2102,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 933064}
+      - m_Target: {fileID: 392026974}
         m_TargetAssemblyTypeName: Phone, Assembly-CSharp
         m_MethodName: counterPlus
         m_Mode: 2
@@ -2501,7 +2465,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 933064}
+      - m_Target: {fileID: 392026974}
         m_TargetAssemblyTypeName: Phone, Assembly-CSharp
         m_MethodName: counterPlus
         m_Mode: 2
@@ -2951,7 +2915,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 933064}
+      - m_Target: {fileID: 392026974}
         m_TargetAssemblyTypeName: Phone, Assembly-CSharp
         m_MethodName: counterPlus
         m_Mode: 2

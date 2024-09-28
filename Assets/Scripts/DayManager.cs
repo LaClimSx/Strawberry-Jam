@@ -25,7 +25,6 @@ public class DayManager : MonoBehaviour
     public GameObject cancelFolder;
     public GameObject folderButton;
 
-    public List<GameObject> currentPages;
 
     public GameObject desk;
 
@@ -237,24 +236,12 @@ public class DayManager : MonoBehaviour
     public void onFolderClick()
     {
         desk.transform.SetSiblingIndex(1);
-        if (currentPages.Count != 0)
-        {
-            foreach (GameObject o in currentPages)
-            {
-                o.SetActive(true);
-            }
-        }
-        else
-        {
             foreach (string s in getFolder())
             {
                 GameObject gameObject = Instantiate(pagePrefab, pagesHolder.transform);
                 var textmesh = gameObject.GetComponentInChildren<Text>();
                 textmesh.text = s;
-                currentPages.Add(gameObject);
             }  
-        }
-        
     }
 
     public string[] getDialog(int button)
