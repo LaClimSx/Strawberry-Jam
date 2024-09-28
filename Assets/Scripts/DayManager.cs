@@ -36,19 +36,19 @@ public class DayManager : MonoBehaviour
 
     private Dictionary<int, string[]> dialogues = new Dictionary<int, string[]>
         {
-            { 1, new [] {"Hello","World" } },  // State 1 -> State 2
-            { 2, new [] {"Hello","World" } }   // State 2 -> State 3
+            { 11, new [] {"Hello","World" } },  // State 1 -> State 2
+            { 12, new [] {"Hello","World" } }   // State 2 -> State 3
         };
     private Dictionary<int, string> debriefs = new Dictionary<int, string>
         {
-            { 1, "Hello" },  // State 1 -> State 2
-            { 2, "World" }   // State 2 -> State 3
+            { 11, "Hello" },  // State 1 -> State 2
+            { 12, "World" }   // State 2 -> State 3
         };
 
     private Dictionary<int, string[]> folders = new Dictionary<int, string[]>
         {
-            { 1, new [] {"Hello"} },  // State 1 -> State 2
-            { 2, new [] {"World"} }   // State 2 -> State 3
+            { 11, new [] {"Hello"} },  // State 1 -> State 2
+            { 12, new [] {"World"} }   // State 2 -> State 3
         };
 
     private void Start()
