@@ -19,8 +19,10 @@ public class Phone : MonoBehaviour
     {
         dayManager = FindObjectOfType<DayManager>();
 
+        var state = dayManager.GetCurrentState();
+
         // Disable the game object if the current state is 1
-        if (dayManager.GetCurrentState() == 1)
+        if (state == 1 || state == 2 || state == 3)
         {
             this.gameObject.SetActive(false);
         }
