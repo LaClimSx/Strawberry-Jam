@@ -17,11 +17,18 @@ public class DayManager : MonoBehaviour
     public GameObject pagesHolder;
     public GameObject messageHolder;
 
-    public Button button1;
-    public Button button2;
-    public Button button3;
+    public GameObject button1;
+    public GameObject button2;
+    public GameObject button3;
+    public GameObject cancelMessage;
+    public GameObject cancelFolder;
 
-    public bool mainIsLoading;
+    public GameObject desk;
+
+    
+
+    public static bool mainIsLoading;
+    public static bool isButtonReady = false;
 
     // Dictionary to hold the state transition maps for each day
     private Dictionary<int, Dictionary<int, int>> dayTransitionMap = new Dictionary<int, Dictionary<int, int>>();
@@ -128,6 +135,7 @@ public class DayManager : MonoBehaviour
         SceneManager.LoadScene("Main");
 
         mainIsLoading = true;
+        isButtonReady = false;
     }
     
     
@@ -135,31 +143,85 @@ public class DayManager : MonoBehaviour
 
     private void Update()
     {
-        if (mainIsLoading && SceneManager.GetActiveScene().isLoaded)
+        if (button1 == null || button2 == null || button3 == null || cancelFolder == null || cancelFolder == null)
         {
-            pagesHolder = GameObject.FindWithTag("PageHolder");
-            messageHolder = GameObject.FindWithTag("MessageHolder");
-            
-            GameObject.FindWithTag("button1").GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(1);});
-            GameObject.FindWithTag("button2").GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(2);});
-            GameObject.FindWithTag("button3").GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(3);});
+            button1 = GameObject.FindWithTag("button1");
+            button2 = GameObject.FindWithTag("button2");
+            button3 = GameObject.FindWithTag("button3");
+            cancelMessage = GameObject.FindWithTag("closeMessage");
+            cancelFolder = GameObject.FindWithTag("closeFolder");
+
+            if (cancelMessage != null && cancelFolder != null)
+            {
+                cancelMessage.GetComponent<Button>().onClick.AddListener(delegate {
+                    for (int i = 0; i < messageHolder.transform.childCount; i++)
+                    {
+                        messageHolder.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                });
+                
+                cancelFolder.GetComponent<Button>().onClick.AddListener(delegate {
+                    for (int i = 0; i < pagesHolder.transform.childCount; i++)
+                    {
+                        pagesHolder.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                });
+                
+                button3.GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(3);});
+                foreach (var o in GameObject.FindGameObjectsWithTag("UI"))
+                {
+                    o.SetActive(false);
+                    
+                }
+                cancelFolder.GetComponent<Button>().onClick.AddListener(delegate {desk.transform.SetAsLastSibling();});
+                cancelMessage.GetComponent<Button>().onClick.AddListener(delegate {desk.transform.SetAsLastSibling();});
+            }
+        }
+
+        if (!isButtonReady)
+        {
+            if (button1 != null && button2 != null && button3 != null)
+            {
+                button1.GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(1);});
+                button2.GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(2);});
+                button3.GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(3);});
+
+                isButtonReady = true;
+            }
+        }
+
+        desk = GameObject.FindWithTag("Desk");
+        pagesHolder = GameObject.FindWithTag("PageHolder");
+        messageHolder = GameObject.FindWithTag("MessageHolder");
+        
+        
             
 
-            mainIsLoading = false;
-        }
+        mainIsLoading = false;
+    }
+
+    public static void initGame()
+    {
+        SceneManager.LoadScene("Main");
+        mainIsLoading = true;
+        isButtonReady = false;
+
     }
 
     public void onButtonClick(int button)
     {
         foreach (string s in getDialog(button))
         {
-            Instantiate(messagePrefab, messageHolder.transform).GetComponent<TextMeshPro>().text = s;
+            GameObject gameObject = Instantiate(messagePrefab, messageHolder.transform);
+            var textmesh = gameObject.GetComponentInChildren<Text>();
+            textmesh.text = s;
+            desk.transform.SetAsFirstSibling();
         }
     }
 
     public string[] getDialog(int button)
     {
-        int show = 10*GetCurrentState() + button;
+        int show = 10* (GetCurrentState()-1) + button;
         return dialogues[show];
     }
 

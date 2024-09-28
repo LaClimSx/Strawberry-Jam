@@ -285,6 +285,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDayState: {fileID: 11400000, guid: 54e5ac230d1c1f34a898633ae41ac740, type: 2}
+  pagePrefab: {fileID: 856558544555606452, guid: 008332f9c931aae49bb931008c0c8df7, type: 3}
+  messagePrefab: {fileID: 3792195441684040733, guid: 5c3128d9b09ed3745916d151c98eba6a, type: 3}
+  pagesHolder: {fileID: 0}
+  messageHolder: {fileID: 0}
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}
 --- !u!4 &540062264
 Transform:
   m_ObjectHideFlags: 0

@@ -9,6 +9,10 @@ TagManager:
   - button1
   - button2
   - button3
+  - closeMessage
+  - closeFolder
+  - UI
+  - Desk
   layers:
   - Default
   - TransparentFX
