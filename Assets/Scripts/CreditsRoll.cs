@@ -11,6 +11,10 @@ public class CreditsRoll : MonoBehaviour
     {
         // Move the credits upward by modifying its anchoredPosition
         creditsTransform.anchoredPosition += new Vector2(0, speed * Time.deltaTime);
-        if (creditsTransform.anchoredPosition.y > 1000f) Application.Quit();
+        if (creditsTransform.anchoredPosition.y > 1280f)
+        {
+            Debug.Log("End");
+            Application.Quit();
+        }
     }
 }
