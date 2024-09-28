@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 
 public class DayManager : MonoBehaviour
@@ -16,7 +17,7 @@ public class DayManager : MonoBehaviour
     public GameObject pagesHolder;
     public GameObject messageHolder;
 
-    public GameObject button1;
+    public Button button1;
     public Button button2;
     public Button button3;
 
@@ -127,9 +128,9 @@ public class DayManager : MonoBehaviour
         SceneManager.LoadScene("Main");
 
         mainIsLoading = true;
-
-
     }
+    
+    
 
 
     private void Update()
@@ -138,6 +139,11 @@ public class DayManager : MonoBehaviour
         {
             pagesHolder = GameObject.FindWithTag("PageHolder");
             messageHolder = GameObject.FindWithTag("MessageHolder");
+            
+            GameObject.FindWithTag("button1").GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(1);});
+            GameObject.FindWithTag("button2").GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(2);});
+            GameObject.FindWithTag("button3").GetComponent<Button>().onClick.AddListener(delegate {onButtonClick(3);});
+            
 
             mainIsLoading = false;
         }
@@ -147,7 +153,7 @@ public class DayManager : MonoBehaviour
     {
         foreach (string s in getDialog(button))
         {
-            
+            Instantiate(messagePrefab, messageHolder.transform).GetComponent<TextMeshPro>().text = s;
         }
     }
 
